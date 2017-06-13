@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const dateformat = require('dateformat');
 
 const randomIntInc = (low, high) => Math.floor((Math.random() * ((high - low) + 1)) + low);
@@ -24,25 +26,31 @@ const halfEndInMinutes = (halfStart) => {
     + randomIntInc(ThreeHoursFiftyFiveMinutesInMinutes, FourHoursFiveMinutesInMinutes);
 };
 
-for (let day = 1; day <= 31; day += 1) {
-  const date = new Date();
-  date.setHours(0, 0, 0);
+const noWorkDays = process.env.NO_WORK_DAYS.split(',');
 
-  const morningStart = firstHalfStartInMinutes();
-  date.setHours(Math.floor(morningStart / 60), morningStart % 60);
-  process.stdout.write(dateformat(date, 'HH:MM'));
+let day = 1;
+while (day <= process.env.TOTAL_DAYS) {
+  if (!noWorkDays.includes(day.toString())) {
+    const date = new Date();
+    date.setHours(0, 0, 0);
 
-  const morningEnd = halfEndInMinutes(morningStart);
-  date.setHours(Math.floor(morningEnd / 60), morningEnd % 60);
-  process.stdout.write(`\t${dateformat(date, 'HH:MM')}`);
+    const morningStart = firstHalfStartInMinutes();
+    date.setHours(Math.floor(morningStart / 60), morningStart % 60);
+    process.stdout.write(dateformat(date, 'HH:MM'));
 
-  const afternoonStart = secondHalfStartInMinutes(morningEnd);
-  date.setHours(Math.floor(afternoonStart / 60), afternoonStart % 60);
-  process.stdout.write(`\t${dateformat(date, 'HH:MM')}`);
+    const morningEnd = halfEndInMinutes(morningStart);
+    date.setHours(Math.floor(morningEnd / 60), morningEnd % 60);
+    process.stdout.write(`\t${dateformat(date, 'HH:MM')}`);
 
-  const afternoonEnd = halfEndInMinutes(afternoonStart);
-  date.setHours(Math.floor(afternoonEnd / 60), afternoonEnd % 60);
-  process.stdout.write(`\t${dateformat(date, 'HH:MM')}`);
+    const afternoonStart = secondHalfStartInMinutes(morningEnd);
+    date.setHours(Math.floor(afternoonStart / 60), afternoonStart % 60);
+    process.stdout.write(`\t${dateformat(date, 'HH:MM')}`);
+
+    const afternoonEnd = halfEndInMinutes(afternoonStart);
+    date.setHours(Math.floor(afternoonEnd / 60), afternoonEnd % 60);
+    process.stdout.write(`\t${dateformat(date, 'HH:MM')}`);
+  }
 
   process.stdout.write('\n');
+  day += 1;
 }
