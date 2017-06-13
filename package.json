@@ -1,0 +1,13 @@
+{
+  "name": "horario-folha-ponto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/FelipePinheiroDev/horario-folha-ponto.git",
+  "author": "Felipe Pinheiro <felipe.pinheiro.90@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0"
+  }
+}
