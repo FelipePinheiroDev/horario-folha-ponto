@@ -9,5 +9,8 @@
     "eslint": "^4.0.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0"
+  },
+  "dependencies": {
+    "dateformat": "^2.0.0"
   }
 }
