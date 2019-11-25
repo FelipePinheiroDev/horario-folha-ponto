@@ -14,8 +14,9 @@ const firstHalfStartInMinutes = () => {
 const secondHalfStartInMinutes = (endOfTheMorning) => {
   const FiftyMinutesInMinutes = 50;
   const OneHourInMinutes = 60;
+  const OneHourTenMinutes = 60 + 10;
 
-  return endOfTheMorning + randomIntInc(FiftyMinutesInMinutes, OneHourInMinutes);
+  return endOfTheMorning + randomIntInc(OneHourInMinutes, OneHourTenMinutes);
 };
 
 const halfEndInMinutes = (halfStart) => {
