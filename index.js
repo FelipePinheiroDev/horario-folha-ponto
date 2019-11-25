@@ -12,10 +12,10 @@ const firstHalfStartInMinutes = () => {
 };
 
 const secondHalfStartInMinutes = (endOfTheMorning) => {
-  const OneHourFiftyMinutesInMinutes = 60 + 50;
-  const TwoHoursInMinutes = 2 * 60;
+  const FiftyMinutesInMinutes = 50;
+  const OneHourInMinutes = 60;
 
-  return endOfTheMorning + randomIntInc(OneHourFiftyMinutesInMinutes, TwoHoursInMinutes);
+  return endOfTheMorning + randomIntInc(FiftyMinutesInMinutes, OneHourInMinutes);
 };
 
 const halfEndInMinutes = (halfStart) => {
